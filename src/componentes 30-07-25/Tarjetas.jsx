@@ -1,4 +1,4 @@
-import Tarjeta from "./Tarjeta"
+  import Tarjeta from "./Tarjeta"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { cargarListaTareas } from "../store/slices/tareasSlices"
