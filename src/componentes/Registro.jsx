@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 const Registro = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [error, setError] = useState(false);
 
   const user = useRef(null);
