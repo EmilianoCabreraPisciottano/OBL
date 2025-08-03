@@ -1,8 +1,15 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    listaRegistros: []
-}
+    listaRegistros: fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())  
+        .then(data => data.map(user => ({
+            id: user.id,
+            nombre: user.name,
+            email: user.email,
+            pais: user.address.country
+        })))
+};
 
 export const registrarSlice = createSlice({
     name: 'registrar',

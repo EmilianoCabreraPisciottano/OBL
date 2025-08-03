@@ -1,4 +1,4 @@
-import { Link, Outlet, NavLink, useNavigate } from "react-router"
+import { Outlet, NavLink, useNavigate } from "react-router"
 
 
 const Menu = () => {

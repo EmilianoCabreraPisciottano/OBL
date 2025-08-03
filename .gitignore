@@ -45,3 +45,10 @@ coverage/
 # Optional: si usás testing con Cypress o similares
 cypress/videos/
 cypress/screenshots/
+/node_modules
+/node_modules
+*.pack
+*.pack
+node_modules/.cache/default-development/0.pack
+node_modules/.cache/default-development/index.pack.old
+/node_modules/.cache/default-development

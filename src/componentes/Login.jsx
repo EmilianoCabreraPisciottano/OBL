@@ -15,7 +15,7 @@ const Login = () => {
 
     if (campoUser === "a" && campoPass === "a") {
       localStorage.setItem("usuario", campoUser);
-      navigate("/Clima");
+      navigate("/dashboard");
     } else {
       setError(true);
     }
@@ -40,6 +40,10 @@ const Login = () => {
           <button onClick={ingresar} className="btn" style={{ backgroundColor: "#5ccddcff", color: "#fff" }}>
             Ingresar
           </button>
+        </div>
+
+        <div>
+          <button onClick={() => navigate("/registrar")} className="btn btn-link">¿No tienes cuenta? Regístrate</button>
         </div>
 
         {error && (
