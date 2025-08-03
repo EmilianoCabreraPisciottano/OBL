@@ -1,4 +1,4 @@
-import { Link, Outlet, NavLink, useNavigate } from "react-router"
+    import { Outlet, useNavigate } from "react-router"
 
 
 const Menu = () => {
@@ -18,7 +18,7 @@ const Menu = () => {
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
-            <NavLink to="/">Ir al Inicio</NavLink> | <NavLink to="/clima">Ir a Clima</NavLink><hr /><br />
+                        <button onClick={logout} className="btn btn-link nav-link">Cerrar Sesión</button>
                     </div>
                 </div>
             </nav>

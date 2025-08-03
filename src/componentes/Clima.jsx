@@ -36,7 +36,7 @@ const Clima = () => {
                 console.log(datos);
                 setPronostico(datos.list)
             })
-    }, [])
+    }, [pronostico, navigate]);
 
 
     return (

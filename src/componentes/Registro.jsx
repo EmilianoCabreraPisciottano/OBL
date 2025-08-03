@@ -5,33 +5,31 @@ const Registro = () => {
   const navigate = useNavigate();
   const [error, setError] = useState(false);
 
-
-
   const user = useRef(null);
   const pass = useRef(null);
   const email = useRef(null);
-  const country = useRef(null);
+  const pais = useRef(null);
 
   const registrar = () => {
     let campoUser = user.current.value;
     let campoPass = pass.current.value;
     let campoEmail = email.current.value;
-    let campoCountry = country.current.value;
+    let campoPais = pais.current.value;
 
-    if (campoUser && campoPass && campoEmail && campoCountry) {
+    if (campoUser && campoPass && campoEmail && campoPais) {
       localStorage.setItem("usuario", campoUser);
       localStorage.setItem("email", campoEmail);
-      localStorage.setItem("country", campoCountry);
-      navigate("/Login");
+      localStorage.setItem("Pais", campoPais);
+      navigate("/");
     } else {
       setError(true);
     }
   }
 
   return (
-    <div class="container">
-      <div class="form-container">
-        <h2 class="form-title">Registro</h2>
+    <div className="container">
+      <div className="form-container">
+        <h2 className="form-title">Registro</h2>
 
         <div className="mb-3">
           <label htmlFor="email" className="form-label">Correo electrónico</label>
@@ -56,3 +54,4 @@ const Registro = () => {
     </div>
   )
 }
+export default Registro;

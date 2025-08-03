@@ -41,7 +41,11 @@ const Login = () => {
             Ingresar
           </button>
         </div>
-
+            <div>
+              <button onClick={() => navigate("/registrar")} className="btn btn-link mt-3">
+                ¿No tienes cuenta? Regístrate aquí  
+              </button>
+            </div>
         {error && (
           <div className="alert alert-danger mt-3 text-center p-2" role="alert">
             Usuario y/o contraseña incorrectos
