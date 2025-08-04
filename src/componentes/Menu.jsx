@@ -12,18 +12,14 @@ const Menu = () => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div className="navbar-nav">
-            <NavLink to="/">Ir al Inicio</NavLink> | <NavLink to="/clima">Ir a Clima</NavLink><hr /><br />
-                    </div>
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                   <NavLink to="/dashboard"> Dashboard</NavLink>
+                   
+                   <button onClick={logout} className="btn btn-link">Cerrar Sesión</button>
                 </div>
             </nav>
-
-        <Outlet />
+            <Outlet />
         </div>
     )
 }

@@ -9,13 +9,15 @@ const Login = () => {
   const user = useRef(null);
   const pass = useRef(null);
 
-  const ingresar = () => {
+  const ingresar = (e) => {
+    e.preventDefault(); // Prevenir el envío del formulario
+    
     const campoUser = user.current.value;
     const campoPass = pass.current.value;
 
     if (campoUser === "a" && campoPass === "a") {
       localStorage.setItem("usuario", campoUser);
-      navigate("/dashboard");
+      navigate("/menu");
     } else {
       setError(true);
     }
@@ -26,21 +28,23 @@ const Login = () => {
       <div className="card p-4 shadow-lg" style={{ maxWidth: "400px", width: "100%", borderRadius: "20px" }}>
         <h3 className="text-center mb-4" style={{ color: "#04c3fdff" }}>Iniciar Sesión</h3>
 
-        <div className="mb-3">
-          <label htmlFor="txtUser" className="form-label ">  Usuario</label>
-          <input type="text" id="txtUser" ref={user} className="form-control" placeholder="Ingrese su usuario" />
-        </div>
+        <form onSubmit={ingresar}>
+          <div className="mb-3">
+            <label htmlFor="txtUser" className="form-label ">  Usuario</label>
+            <input type="text" id="txtUser" ref={user} className="form-control" placeholder="Ingrese su usuario" />
+          </div>
 
-        <div className="mb-3">
-          <label htmlFor="txtPass" className="form-label">Contraseña</label>
-          <input type="password" id="txtPass" ref={pass} className="form-control" placeholder="Ingrese su contraseña" />
-        </div>
+          <div className="mb-3">
+            <label htmlFor="txtPass" className="form-label">Contraseña</label>
+            <input type="password" id="txtPass" ref={pass} className="form-control" placeholder="Ingrese su contraseña" />
+          </div>
 
-        <div className="d-grid">
-          <button onClick={ingresar} className="btn" style={{ backgroundColor: "#5ccddcff", color: "#fff" }}>
-            Ingresar
-          </button>
-        </div>
+          <div className="d-grid">
+            <button type="submit" className="btn" style={{ backgroundColor: "#5ccddcff", color: "#fff" }}>
+              Ingresar
+            </button>
+          </div>
+        </form>
 
         <div>
           <button onClick={() => navigate("/registrar")} className="btn btn-link">¿No tienes cuenta? Regístrate</button>

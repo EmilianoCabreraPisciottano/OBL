@@ -1,14 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    listaRegistros: fetch('https://jsonplaceholder.typicode.com/users')
-        .then(response => response.json())  
-        .then(data => data.map(user => ({
-            id: user.id,
-            nombre: user.name,
-            email: user.email,
-            pais: user.address.country
-        })))
+    listaUsuarios: []
 };
 
 export const registrarSlice = createSlice({
@@ -16,10 +9,10 @@ export const registrarSlice = createSlice({
     initialState,   
     reducers: {
         agregarRegistro: (state, action) => {
-            state.listaRegistros.push(action.payload);
+            state.listaUsuarios.push(action.payload);
         },
         eliminarRegistro: (state, action) => {
-            state.listaRegistros = state.listaRegistros.filter(registro => registro.id !== action.payload.id);
+            state.listaUsuarios = state.listaUsuarios.filter(registro => registro.id !== action.payload.id);
         }
     }
 });
