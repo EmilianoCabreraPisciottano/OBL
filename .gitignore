@@ -52,3 +52,4 @@ cypress/screenshots/
 node_modules/.cache/default-development/0.pack
 node_modules/.cache/default-development/index.pack.old
 /node_modules/.cache/default-development
+node_modules/.cache/default-development/3.pack
