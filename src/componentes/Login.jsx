@@ -4,22 +4,58 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
+  const [cambiarBoton, setCambiarBoton] = useState(false);
+  const cambiarInput = () => {
+    const campoUser = user.current.value;
+    const campoPass = pass.current.value;
+    setCambiarBoton(!!campoUser && !!campoPass);
+    // Limpiar error cuando el usuario empiece a escribir
+    if (error) setError("");
+  };
 
   const user = useRef(null);
   const pass = useRef(null);
 
-  const ingresar = (e) => {
-    e.preventDefault(); // Prevenir el envío del formulario
+  const ingresar = async (e) => {
+    e.preventDefault();
     
     const campoUser = user.current.value;
     const campoPass = pass.current.value;
 
-    if (campoUser === "a" && campoPass === "a") {
-      localStorage.setItem("usuario", campoUser);
-      navigate("/menu");
-    } else {
-      setError(true);
+    try {
+      console.log("Intentando login con:", { usuario: campoUser, password: campoPass });
+      
+      const response = await fetch("https://goalify.develotion.com/login.php", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          usuario: campoUser,
+          password: campoPass
+        })
+      });
+
+      console.log("Response status:", response.status);
+      const data = await response.json();
+      console.log("Data recibida:", data);
+
+      if (data.codigo === 200) {
+        // Guardar datos de sesión
+        localStorage.setItem("token", data.apiKey);
+        localStorage.setItem("userId", data.id.toString());
+        localStorage.setItem("usuario", campoUser);
+        
+        console.log("Login exitoso, navegando a menu");
+        navigate("/menu");
+      } else {
+        console.error("Error en login:", data.mensaje);
+        setError(data.mensaje || "Error en el login");
+      }
+    } catch (error) {
+      console.error("Error de conexión:", error);
+      setError("Error de conexión con el servidor");
     }
   };
 
@@ -31,16 +67,16 @@ const Login = () => {
         <form onSubmit={ingresar}>
           <div className="mb-3">
             <label htmlFor="txtUser" className="form-label ">  Usuario</label>
-            <input type="text" id="txtUser" ref={user} className="form-control" placeholder="Ingrese su usuario" />
+            <input type="text" id="txtUser" ref={user} className="form-control" placeholder="Ingrese su usuario" onChange={cambiarInput} />
           </div>
 
           <div className="mb-3">
             <label htmlFor="txtPass" className="form-label">Contraseña</label>
-            <input type="password" id="txtPass" ref={pass} className="form-control" placeholder="Ingrese su contraseña" />
+            <input type="password" id="txtPass" ref={pass} className="form-control" placeholder="Ingrese su contraseña" onChange={cambiarInput}  />
           </div>
 
           <div className="d-grid">
-            <button type="submit" className="btn" style={{ backgroundColor: "#5ccddcff", color: "#fff" }}>
+            <button type="submit" className="btn" style={{ backgroundColor: "#5ccddcff", color: "#fff" }} disabled={!cambiarBoton}>
               Ingresar
             </button>
           </div>
@@ -52,7 +88,7 @@ const Login = () => {
 
         {error && (
           <div className="alert alert-danger mt-3 text-center p-2" role="alert">
-            Usuario y/o contraseña incorrectos
+            {typeof error === 'string' ? error : 'Usuario y/o contraseña incorrectos'}
           </div>
         )}
       </div>
