@@ -14,7 +14,10 @@ const Menu = () => {
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
-                   <NavLink to="/dashboard"> Dashboard</NavLink>
+                   <div className="d-flex">
+                       <NavLink to="/dashboard" className="nav-link me-3">Dashboard</NavLink>
+                       <NavLink to="/evaluaciones" className="nav-link me-3">Evaluaciones</NavLink>
+                   </div>
                    
                    <button onClick={logout} className="btn btn-link">Cerrar Sesión</button>
                 </div>
