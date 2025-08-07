@@ -15,7 +15,14 @@ const ListaEvaluaciones = () => {
             return;
         }
 
-        fetch(`https://goalify.develotion.com/evaluaciones.php?idUsuario=${userId}&apiKey=${token}`)
+        fetch(`https://goalify.develotion.com/evaluaciones.php?idUsuario=${userId}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "token": token,
+                "iduser": userId
+            }
+        })
             .then(response => response.json())
             .then(data => {
                 console.log("Data recibida:", data);
@@ -37,17 +44,28 @@ const ListaEvaluaciones = () => {
 
     return (
         <div>
-            <h2>Lista de Evaluaciones</h2>
+            <h6 className="mb-3">📊 Evaluaciones Recientes</h6>
             {evaluacionesArray.length === 0 ? (
-                <p>No hay evaluaciones disponibles</p>
+                <div className="text-muted text-center py-3">
+                    <i className="fas fa-inbox mb-2"></i>
+                    <p className="mb-0">No hay evaluaciones disponibles</p>
+                </div>
             ) : (
-                <ul>
+                <div className="list-group list-group-flush">
                     {evaluacionesArray.map(evaluacion => (
-                        <li key={evaluacion.id}>
-                            {evaluacion.emoj || '📊'} {evaluacion.nombre || 'Sin nombre'} - {evaluacion.calificacion}
-                        </li>
+                        <div key={evaluacion.id} className="list-group-item border-0 px-0 py-2">
+                            <div className="d-flex justify-content-between align-items-center">
+                                <div className="flex-grow-1">
+                                    <span className="me-2">{evaluacion.emoj || '📊'}</span>
+                                    <small className="text-muted">{evaluacion.nombre}</small>
+                                </div>
+                                <span className={`badge ${evaluacion.calificacion >= 0 ? 'bg-success' : 'bg-danger'}`}>
+                                    {evaluacion.calificacion > 0 ? '+' : ''}{evaluacion.calificacion}
+                                </span>
+                            </div>
+                        </div>
                     ))}
-                </ul>
+                </div>
             )}
         </div>
     );

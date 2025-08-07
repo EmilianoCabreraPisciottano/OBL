@@ -48,7 +48,7 @@ const Login = () => {
         localStorage.setItem("usuario", campoUser);
         
         console.log("Login exitoso, navegando a menu");
-        navigate("/menu");
+        navigate("/dashboard");
       } else {
         console.error("Error en login:", data.mensaje);
         setError(data.mensaje || "Error en el login");
