@@ -43,7 +43,7 @@ const Login = () => {
 
       if (data.codigo === 200) {
         // Guardar datos de sesión
-        localStorage.setItem("token", data.apiKey);
+        localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.id.toString());
         localStorage.setItem("usuario", campoUser);
         

@@ -3,6 +3,8 @@ import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { agregarRegistro } from "../store/slices/registrarSlice";
 
+
+
 const Registro = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -77,13 +79,13 @@ const Registro = () => {
             id: data.id,
             nombre: campoUser,
             pais: campoPais,
-            token: data.apiKey
+            token: data.token
           };
           
           dispatch(agregarRegistro(nuevoUsuario));
           
           // Guardar en localStorage para mantener la sesión
-          localStorage.setItem("token", data.apiKey);
+          localStorage.setItem("token", data.token);
           localStorage.setItem("userId", data.id.toString());
           localStorage.setItem("usuario", campoUser);
           

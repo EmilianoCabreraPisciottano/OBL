@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AgregarEvaluacion from "./AgregarEvaluacion";
 
 const Dashboard = () => {
     const [data, setData] = useState(null);
@@ -9,6 +10,7 @@ const Dashboard = () => {
             {
                 <p>Aqui va el dashboard</p>
             }
+            <AgregarEvaluacion />
         </div>
     );
 };
