@@ -1,18 +1,18 @@
 import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-    listaRegistros: []
-}
+    listaUsuarios: []
+};
 
 export const registrarSlice = createSlice({
     name: 'registrar',
     initialState,   
     reducers: {
         agregarRegistro: (state, action) => {
-            state.listaRegistros.push(action.payload);
+            state.listaUsuarios.push(action.payload);
         },
         eliminarRegistro: (state, action) => {
-            state.listaRegistros = state.listaRegistros.filter(registro => registro.id !== action.payload.id);
+            state.listaUsuarios = state.listaUsuarios.filter(registro => registro.id !== action.payload.id);
         }
     }
 });

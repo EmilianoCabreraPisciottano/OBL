@@ -1,4 +1,7 @@
-    import { Outlet, useNavigate } from "react-router"
+
+import { Outlet, useNavigate } from "react-router"
+import { Outlet, NavLink, useNavigate } from "react-router"
+
 
 
 const Menu = () => {
@@ -20,10 +23,20 @@ const Menu = () => {
                     <div className="navbar-nav">
                         <button onClick={logout} className="btn btn-link nav-link">Cerrar Sesión</button>
                     </div>
+
+            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <div className="container-fluid">
+                   <div className="d-flex">
+                       <NavLink to="/dashboard" className="nav-link me-3">Dashboard</NavLink>
+                       <NavLink to="/evaluaciones" className="nav-link me-3">Evaluaciones</NavLink>
+                   </div>
+                   
+                   <button onClick={logout} className="btn btn-link">Cerrar Sesión</button>
                 </div>
             </nav>
-
-        <Outlet />
+            <Outlet />
+        </div>
+        </nav>
         </div>
     )
 }
