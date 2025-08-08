@@ -45,3 +45,7 @@ coverage/
 # Optional: si usás testing con Cypress o similares
 cypress/videos/
 cypress/screenshots/
+/node_modules
+/node_modules/.cache
+node_modules/postcss-initial/~/.config/configstore/update-notifier-npm.json
+node_modules/.cache/.eslintcache
